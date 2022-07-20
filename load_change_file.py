@@ -3,13 +3,13 @@ import json
 
 def load_change_file(file: str):
     """
-    Input : content of the file as string with one change per line
-    Output: dict containing changes with pathes as keys
+    Input : content of the file as string
+    Output: dict with change path as key
     """
 
-    # some changes to get a json-like string
-    file = file.replace("\n", ",")
+    # string operations to get a json-like
+    jsonized = "{%s}" % file.replace("\n", ",")
 
-    changes = json.loads("{%s}" % file)
+    changes = json.loads(jsonized)
 
     return changes

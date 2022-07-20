@@ -6,17 +6,17 @@ import json
 from load_change_file import load_change_file
 from modify_config import modify_config
 
-CONFIG_FILE_DEFAULT = "./inputs/config1.json"
-CHANGE_FILE_DEFAULT = "./inputs/changes1.txt"
+CONFIG_PATH_DEFAULT = "./inputs/config1.json"
+CHANGE_PATH_DEFAULT = "./inputs/changes1.txt"
 
 
 def main():
     """
     1. parses command line arguments
-    2. read files
+    2. reads files
     3. achieves modifications
     """
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(format="%(message)s", level=logging.INFO)
 
     parser = argparse.ArgumentParser(description="config modification script")
     parser.add_argument(
@@ -30,16 +30,16 @@ def main():
 
     args = parser.parse_args()
 
-    config_file_path = args.config or CONFIG_FILE_DEFAULT
-    change_file_path = args.changes or CHANGE_FILE_DEFAULT
+    config_path = args.config or CONFIG_PATH_DEFAULT
+    changes_path = args.changes or CHANGE_PATH_DEFAULT
 
-    # load config file
-    with open(config_file_path) as config_file:
-        config = json.load(config_file)
+    # loads config
+    with open(config_path) as file:
+        config = json.load(file)
 
-    # load changes file
-    with open(change_file_path) as change_file:
-        changes = load_change_file(change_file.read())
+    # loads changes
+    with open(changes_path) as file:
+        changes = load_change_file(file.read())
 
     modify_config(config, changes)
 

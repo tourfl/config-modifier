@@ -5,7 +5,7 @@ from load_change_file import load_change_file
 
 @pytest.fixture
 def change_file1():
-    with open("./inputs/change1.txt") as change_file:
+    with open("./inputs/changes1.txt") as change_file:
         changes_str = change_file.read()
 
     return changes_str
@@ -13,7 +13,7 @@ def change_file1():
 
 @pytest.fixture
 def change_file2():
-    with open("./inputs/change2.txt") as change_file:
+    with open("./inputs/changes2.txt") as change_file:
         changes_str = change_file.read()
 
     return changes_str
