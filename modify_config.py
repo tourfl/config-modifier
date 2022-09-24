@@ -17,11 +17,11 @@ def modify_config(config: dict, changes: dict) -> dict:
 
         try:
             modify_value(config, path, value)
-            logging.info(colored(f" [{line}] Success! {str_path}", "green"))
+            logging.info(colored(f' [{line}] Success! "{str_path}": {value}', "green"))
             success += 1
 
         except (KeyError, IndexError):
-            logging.error(colored(f" [{line}] Invalid path! {str_path}", "red"))
+            logging.error(colored(f' [{line}] Invalid path! "{str_path}"', "red"))
 
     logging.info(f" {success}/{line} changes achieved")
 
@@ -30,8 +30,8 @@ def modify_config(config: dict, changes: dict) -> dict:
 
 def parse_path(str_path: str) -> list:
     """
-    parses the point-separated string
-    also parses the integer inside brackets
+    parses dict keys and list indexes from a string.
+    dict keys are point-separated strings, list indexes are integers inside brackets.
 
     Example:
     input : "test.page1[0].config"
@@ -41,7 +41,7 @@ def parse_path(str_path: str) -> list:
 
     keys = str_path.split(".")
 
-    # parses integers inside brackets
+    # parses list indexes (integer inside brackets)
     for key in keys:
 
         s = key.split("[")
